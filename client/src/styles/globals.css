@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-textDefault;
+    @apply bg-bgDefault;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.li {
+  font-style: oblique;
+  color: gray;
+}
+.li:hover {
+  cursor: pointer;
+  color: orange;
+}
+.signOut{
+}
+.hover-signOut:hover .signOut{
+  display: block;
+}

@@ -1,0 +1,51 @@
+.labels {
+    position: absolute;
+    pointer-events: none;
+    transform: translate(0, 23px) scale(1);
+    transform-origin: top left;
+    transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+    color: #6f81a5;
+    font-size: 16px;
+    line-height: 1;
+    left: 18px;
+    top: 2px;
+  }
+  .input-container:focus-within .labels {
+    transform: translate(0, 12px) scale(0.8);
+    color: black;
+    font-size: 12px;
+    padding: 2px;
+  }
+  .label {
+    position: absolute;
+    top: -3px;
+    left: 14px;
+    transform: translate(0, 12px) scale(0.8);
+    color: black;
+    font-size: 12px;
+    padding: 2px;
+  }
+  
+  .input-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  .errMessage {
+    font-size: 12px;
+    color: red;
+    font-weight: 500;
+    padding-left: 6px;
+  }
+  @media only screen and (max-width: 1000px) {
+    .label {
+    position: absolute;
+    top: -1px;
+    left: 14px;
+    transform: translate(0, 12px) scale(0.8);
+    color: black;
+    font-size: 12px;
+    padding: 2px;
+    }
+  }
