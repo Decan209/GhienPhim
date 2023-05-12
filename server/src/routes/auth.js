@@ -18,7 +18,7 @@ authRouter.get('/google/callback', passport.authenticate('google', { session: fa
 
 authRouter.post('/forgotPassword', authController.forgotPassword);
 authRouter.post('/refreshToken', verifyReFreshToken, authController.refreshToken);
-
+authRouter.post('/addSigninGoogle',authController.addSigninGoogle)
 authRouter.use(verifyToken);
 authRouter.post('/changePassword', authController.changePassword);
 authRouter.use(checkRole);

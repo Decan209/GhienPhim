@@ -20,8 +20,7 @@ const loginGoogle = asyncHandler(async (req, res) => {
     const user = req.user;
     console.log(user);
     const data = {
-        firstName: user.firstName,
-        lastName: user.lastName,
+        name: user.name,
         email: user.email,
         picture: user.picture,
         token: user.token
@@ -74,12 +73,12 @@ const login = asyncHandler(async (req, res) => {
         const user = await UserModel.findOne({ email });
         if (!user) {
             res.statusCode = 404;
-            throw new Error('no user exists with email: ' + email);
+            throw new Error('Email: ' + email + ' Không tồn tại');
         }
         const comparePassword = await bcrypt.compare(password, user.password);
         if (!comparePassword) {
             res.statusCode = 401;
-            throw new Error('Incorrect password');
+            throw new Error('Thông tin hoặc tài khoản không chính xac');
         }
         const token = jwt.sign({
             email,
@@ -101,8 +100,7 @@ const login = asyncHandler(async (req, res) => {
             message: "login successfully",
             email,
             data: {
-                firstName: user.firstName,
-                lastName: user.lastName,
+                name: user.name,
                 picture: user.picture,
                 email,
                 token
@@ -115,8 +113,8 @@ const register = asyncHandler(async (req, res) => {
     if(!req.body){
         throw new Error("Body not found!");
     }
-    const { firstName, lastName, email, mobile, password } = req.body;
-    if (firstName && lastName && email && mobile && password && Object.keys(req.body).length === 5) {
+    const { name, email, mobile, password } = req.body;
+    if (name && email && mobile && password && Object.keys(req.body).length === 4) {
         const hashPassword = bcrypt.hashSync(password, salt);
         const newUser = new UserModel({
             ...req.body,
@@ -127,7 +125,7 @@ const register = asyncHandler(async (req, res) => {
             res.status(201).json({
                 status: "ok",
                 message: "register successfully!",
-                data: { firstName, lastName, email }
+                data: { name, email }
             })
         } catch(err) {
             if(err.name === 'MongoServerError' && err.code === 11000 && err.keyValue.email){
@@ -234,6 +232,28 @@ const refreshToken = asyncHandler(async (req, res) => {
     })
 })
 
+const addSigninGoogle = asyncHandler(async(req,res)=>{
+    const { name, email, googleId, picture } = req.body;
+    const checkUser = await UserModel.findOne({googleId:googleId})
+    if(checkUser){
+        return res.status(201).json({
+            message: "SignIn successfully"
+        })
+    }
+    const hashPassword = bcrypt.hashSync(email, salt);
+    const newUser = new UserModel({
+        ...req.body,
+        password: hashPassword
+    });
+    await newUser.save();
+    res.status(201).json({
+        status: "ok",
+        message: "Add user Google successfully!",
+        data: { name, email }
+    })
+
+})
+
 export {
     getAllUser,
     blockUser,
@@ -242,5 +262,6 @@ export {
     forgotPassword,
     changePassword,
     refreshToken,
-    loginGoogle
+    loginGoogle,
+    addSigninGoogle,
 }

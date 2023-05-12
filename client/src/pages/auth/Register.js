@@ -24,8 +24,7 @@ const Register = () => {
     <>
       <Formik
         initialValues={{
-          firstName: "",
-          lastName: "",
+          name: "",
           email: "",
           password: "",
           mobile: "",
@@ -34,8 +33,7 @@ const Register = () => {
           email: Yup.string()
             .email("Please enter your email")
             .required("Please fill email field"),
-          firstName: Yup.string().required("Please fill First Name field"),
-          lastName: Yup.string().required("Please fill Last Name field"),
+          name: Yup.string().required("Please fill Name field"),
           password: Yup.string().required("Please fill PassWord field"),
           mobile: Yup.string().required("Please fill PassWord field"),
         })}
@@ -66,32 +64,17 @@ const Register = () => {
               REGISTER
             </div>
             <div className="input-container">
-              <label className={valueOnChange?.firstName ? "label" : "labels"}>
-                FirstName
+              <label className={valueOnChange?.name ? "label" : "labels"}>
+                Name
               </label>
               <Field
-                id="firstName"
-                name="firstName"
+                id="name"
+                name="name"
                 type="text"
                 className=" w-full border-2 pt-4 pl-2 pb-1 inputAcc text-gray-900"
               />
               <ErrorMessage
-                name="firstName"
-                render={(msg) => <div className="errMessage">{msg}</div>}
-              />
-            </div>
-            <div className="input-container">
-              <label className={valueOnChange?.lastName ? "label" : "labels"}>
-                LastName
-              </label>
-              <Field
-                id="lastName"
-                name="lastName"
-                type="text"
-                className=" w-full border-2 pt-4 pl-2 pb-1 inputAcc text-gray-900"
-              />
-              <ErrorMessage
-                name="lastName"
+                name="name"
                 render={(msg) => <div className="errMessage">{msg}</div>}
               />
             </div>
