@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import {FaturedMovies} from '../../../data/FaturedMovies'
 import { AiFillForward, AiOutlineBackward } from "react-icons/ai";
 import MainLayout from "@/pages/layout/MainLayout";
+import { ToastContainer } from "react-toastify";
 
 export default function index() {
     const [nextPage, setNextPage] = useState(1)
   return (
     <MainLayout>
+      <ToastContainer/>
       <div className="text-2xl font-semibold pl-4 mt-8 ml-4 font-seri text-center py-4">
         Danh Sách Phim Yêu Thích
       </div>

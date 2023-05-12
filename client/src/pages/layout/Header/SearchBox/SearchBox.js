@@ -18,9 +18,10 @@ export default function SearchBox() {
         onChange={(e) => setValueInput(e.target.value)}
         type="text"
         placeholder="Search..."
+        required
         className="text-orange-500 max-md:w-11/12 max-lg:w-11/12 border-none py-2 px-4 w-96 rounded-3xl bg-gray-700"
       />
-      <button className=" max-sm:hidden  max-md:hidden max-lg:hidden text-orange-500 bg-black relative right-28 px-4 py-1 rounded-3xl">
+      <button type="submit" className=" max-sm:hidden  max-md:hidden max-lg:hidden text-orange-500 bg-black relative right-28 px-4 py-1 rounded-3xl">
         Tìm kiếm
       </button>
       {/* <div className="absolute bg-black ml-3 mt-1 rounded-lg max-sm:w-full max-sm:left-0 hidden">

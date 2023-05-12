@@ -1,12 +1,15 @@
 import MainLayout from "@/pages/layout/MainLayout";
 import React from "react";
-import { AiFillEye } from "react-icons/ai";
+import { AiFillEye, AiFillHeart } from "react-icons/ai";
 import YouTube from "react-youtube";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getOneMovie } from "@/services/Detail.service";
 import { useQuery } from "react-query";
 import { BeatLoader } from "react-spinners";
+import { useSession } from "next-auth/react";
+import { addFavorite } from "@/services/favorite.service";
+import { ToastContainer, toast } from "react-toastify";
 
 const opts = {
   height: "400",
@@ -19,6 +22,7 @@ const opts = {
 const Details = () => {
   const router = useRouter();
   const id = router.query.slug;
+  const { data: session } = useSession();
 
   if (id === "undefined") {
     return (
@@ -45,6 +49,20 @@ const Details = () => {
 
   if (error) {
     return console.log(error);
+  }
+
+
+
+  const email = session?.user?.email;
+
+  const handleAddFeatue = (idMovie)=>{
+    addFavorite({email,idMovie})
+    .then((res) => {
+      if (res.data.status === "ok") {
+        toast.success("Thêm vào danh sách yêu thích thành công");
+      }
+    })
+    .catch((err) => toast.error(err.response.data.message));
   }
 
   return (
@@ -106,6 +124,11 @@ const Details = () => {
             >
               Xem Phim
             </Link>
+            <div onClick={()=>handleAddFeatue(todo._id)} className="px-4 py-1 ml-10">
+              <Link href={session?.user?`/categories/favorite`:`/auth/Login`}>
+                <AiFillHeart className="text-3xl text-gray-700"/>
+              </Link>
+            </div>
           </div>
           <div>
             <div className="py-8 w-10/12 max-sm:w-full">

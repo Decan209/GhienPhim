@@ -4,8 +4,6 @@ import Navbar from "./Navbar/Navbar";
 import NavbarMobile from "./Navbar/NavbarMobile";
 import SearchBox from "./SearchBox/SearchBox";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { data } from "autoprefixer";
-import { useEffect } from "react";
 import { addSigninGoogle } from "@/services/auth.service";
 import { useQuery } from "react-query";
 import { BeatLoader } from "react-spinners";
@@ -13,15 +11,17 @@ import { BeatLoader } from "react-spinners";
 export default function Header() {
   const { data: session } = useSession();
   const avatar = session?.user.image;
-  console.log(session?.user)
+
   const userGo = {
     name: session?.user?.name,
     email: session?.user?.email,
     googleId: session?.user?.id,
     picture: session?.user?.image,
   }
+
+
     if(session?.user?.id){
-      const { isLoading, error, data } = useQuery(["addSigninGoogle",userGo],()=>addSigninGoogle(userGo));
+      const { isLoading, error } = useQuery(["addSigninGoogle",userGo],()=>addSigninGoogle(userGo));
       if (isLoading) {
         return (
           <div className="flex justify-center items-center h-screen">
@@ -34,7 +34,7 @@ export default function Header() {
         return console.log(error);
       }
     }
-    
+  
   return (
     <>
       <div className="flex justify-between px-5 max-sm: pt-4 ">
