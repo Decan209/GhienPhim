@@ -10,7 +10,7 @@ const ProductList = ({ data }) => {
             <img
               src={data.avatar}
               alt=""
-              className="rounded-lg"
+              className="rounded-lg max-sm:mx-auto"
               style={{
                 width: 200,
                 height: 240,

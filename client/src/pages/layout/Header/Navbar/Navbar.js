@@ -6,7 +6,7 @@ import React, { useState } from "react";
 export const items = [
   { id: 1, name: "HOME", path: "/" },
   { id: 3, name: "PHIM LẺ", path: "/categories/singleMovie" },
-  { id: 2, name: "PHIM BỘ", path: "" },
+  // { id: 2, name: "PHIM BỘ", path: "" },
   { id: 4, name: "PHIM VIỆT", path: "/categories/filmViet" },
   { id: 5, name: "PHIM HÀI", path: "/categories/comedy" },
   { id: 6, name: "HÀNH ĐỘNG", path: "/categories/actionMovie" },

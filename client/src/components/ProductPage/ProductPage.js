@@ -35,7 +35,7 @@ const ProductPage = ({ getApi,category }) => {
       <div className="text-2xl font-semibold pl-4 mt-8 ml-4 font-seri text-center py-4">
         {category}
       </div>
-      <div className="w-3/4 mx-auto mt-4">
+      <div className="w-3/4 mx-auto mt-4 max-lg:w-11/12">
         <div className="py-4">
           <Filter />
         </div>

@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import YoutubeMovie from "../models/YoutubeMovie.js";
 import UserModel from "../models/User.js";
+import { ObjectId } from "mongodb";
 
 const searchBox = asyncHandler(async (req, res) => {
   let key = req.query.q;
@@ -48,7 +49,7 @@ const favouriteMovie = asyncHandler(async (req, res) => {
 
   if (!user) {
     res.statusCode = 401;
-    throw Error("Không tìm thấy tài khoản " + email);
+    throw Error("Bạn phải đăng nhập để thêm vào danh sách yêu thích");
   }
 
   const checked = user.favouriteMovie.includes(idMovie);
@@ -74,15 +75,35 @@ const getFavourite = asyncHandler(async (req, res) => {
     "favouriteMovie"
   );
 
-  if(!favourite){
+  if (!favourite) {
     res.statusCode = 401;
-    throw Error("Tài khoản "+email+" không tồn tại")
+    throw Error("Tài khoản " + email + " không tồn tại");
   }
   res.status(200).json({
     status: "ok",
     message: "Get data favourite success",
-    data: favourite
-  })
+    favourite,
+  });
 });
 
-export { searchBox, paginationPage, favouriteMovie, getFavourite };
+const deleteFavouriteMovie = asyncHandler(async (req, res) => {
+  const { email, idMovie } = req.body;
+  const newFavourite = await UserModel.updateOne(
+    { email: email },
+    { $pull: { favouriteMovie: new ObjectId(idMovie) } }
+  );
+
+  res.status(200).json({
+    status: "ok",
+    message: "Xóa phim khỏi danh sách yêu thích thành công",
+    data: newFavourite,
+  });
+});
+
+export {
+  searchBox,
+  paginationPage,
+  favouriteMovie,
+  getFavourite,
+  deleteFavouriteMovie,
+};

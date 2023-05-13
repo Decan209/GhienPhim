@@ -51,8 +51,6 @@ const Details = () => {
     return console.log(error);
   }
 
-
-
   const email = session?.user?.email;
 
   const handleAddFeatue = (idMovie)=>{
@@ -67,6 +65,7 @@ const Details = () => {
 
   return (
     <MainLayout>
+      <ToastContainer/>
       {data?.map((todo) => (
         <div className="p-4 w-3/4 mx-auto max-sm:w-full" key={todo.id}>
           <div className="flex max-sm:block">
@@ -124,8 +123,8 @@ const Details = () => {
             >
               Xem Phim
             </Link>
-            <div onClick={()=>handleAddFeatue(todo._id)} className="px-4 py-1 ml-10">
-              <Link href={session?.user?`/categories/favorite`:`/auth/Login`}>
+            <div onClick={()=>handleAddFeatue(todo._id)} className="px-4 py-1 ml-10 cursor-pointer">
+              <Link href={`/auth/Login`} className={`${session?.user?"pointer-events-none":""}`}>
                 <AiFillHeart className="text-3xl text-gray-700"/>
               </Link>
             </div>

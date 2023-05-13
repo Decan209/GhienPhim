@@ -5,7 +5,8 @@ const featureRouter = express.Router();
 
 featureRouter.get("/search", featureController.searchBox);
 featureRouter.get("/categories", featureController.paginationPage);
-featureRouter.post("/favouriteMovie", featureController.favouriteMovie)
-featureRouter.post("/getFavourite/:email",featureController.getFavourite)
+featureRouter.post("/favouriteMovie", featureController.favouriteMovie);
+featureRouter.get("/getFavourite/:email",featureController.getFavourite);
+featureRouter.post("/deleteFavouriteMovie",featureController.deleteFavouriteMovie);
 
 export default featureRouter;
