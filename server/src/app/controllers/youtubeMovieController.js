@@ -106,13 +106,14 @@ const getActionMovieLimit = asyncHandler(async (req, res) => {
 
 const getActionMovie = asyncHandler(async (req, res) => {
   let page = req.query.page;
-
+  const filter = Object.keys(req.filter).length===0?{}:req.filter;
   const PAGE_SIZE = 8;
 
   if (page) {
     page = parseInt(page);
     const skip = (page - 1) * PAGE_SIZE;
     const data = await YoutubeMovie.find({ category: "Hanh dong" })
+      .sort(filter)
       .skip(skip)
       .limit(PAGE_SIZE);
     res.status(200).json({
@@ -130,6 +131,7 @@ const getActionMovie = asyncHandler(async (req, res) => {
 
 const getFilmViet = asyncHandler(async (req, res) => {
   let page = req.query.page;
+  const filter = Object.keys(req.filter).length===0?{}:req.filter;
 
   const PAGE_SIZE = 8;
 
@@ -137,6 +139,7 @@ const getFilmViet = asyncHandler(async (req, res) => {
     page = parseInt(page);
     const skip = (page - 1) * PAGE_SIZE;
     const data = await YoutubeMovie.find({ country: "Viet Nam" })
+      .sort(filter)
       .skip(skip)
       .limit(PAGE_SIZE);
     res.status(200).json({
@@ -153,13 +156,14 @@ const getFilmViet = asyncHandler(async (req, res) => {
 });
 const getCartonMovie = asyncHandler(async (req, res) => {
   let page = req.query.page;
-
+  const filter = Object.keys(req.filter).length===0?{}:req.filter;
   const PAGE_SIZE = 8;
 
   if (page) {
     page = parseInt(page);
     const skip = (page - 1) * PAGE_SIZE;
     const data = await YoutubeMovie.find({ category: "Hoat hinh" })
+      .sort(filter)
       .skip(skip)
       .limit(PAGE_SIZE);
     res.status(200).json({
@@ -176,6 +180,7 @@ const getCartonMovie = asyncHandler(async (req, res) => {
 });
 const getComedyMovie = asyncHandler(async (req, res) => {
   let page = req.query.page;
+  const filter = Object.keys(req.filter).length===0?{}:req.filter;
 
   const PAGE_SIZE = 8;
 
@@ -183,6 +188,7 @@ const getComedyMovie = asyncHandler(async (req, res) => {
     page = parseInt(page);
     const skip = (page - 1) * PAGE_SIZE;
     const data = await YoutubeMovie.find({ category: "Hai" })
+      .sort(filter)
       .skip(skip)
       .limit(PAGE_SIZE);
     res.status(200).json({
@@ -190,7 +196,7 @@ const getComedyMovie = asyncHandler(async (req, res) => {
       data: data,
     });
   } else {
-    const data = await YoutubeMovie.find({});
+    const data = await YoutubeMovie.find({ category: "Hai" });
     res.status(200).json({
       status: "ok",
       data: data,
@@ -200,13 +206,13 @@ const getComedyMovie = asyncHandler(async (req, res) => {
 
 const getSingleMovie = asyncHandler(async (req, res) => {
   let page = req.query.page;
-
+  const filter = Object.keys(req.filter).length===0?{}:req.filter;
   const PAGE_SIZE = 8;
-
   if (page) {
     page = parseInt(page);
     const skip = (page - 1) * PAGE_SIZE;
     const data = await YoutubeMovie.find({ type: "single" })
+      .sort(filter)
       .skip(skip)
       .limit(PAGE_SIZE);
     res.status(200).json({
@@ -214,7 +220,7 @@ const getSingleMovie = asyncHandler(async (req, res) => {
       data: data,
     });
   } else {
-    const data = await YoutubeMovie.find({});
+    const data = await YoutubeMovie.find({ type: "single" });
     res.status(200).json({
       status: "ok",
       data: data,
@@ -223,16 +229,13 @@ const getSingleMovie = asyncHandler(async (req, res) => {
 });
 
 const getTrendingMovie = asyncHandler(async (req, res) => {
-  const data = await YoutubeMovie.find()
-    .sort({view: -1 })
-    .limit(10);
+  const data = await YoutubeMovie.find().sort({ view: -1 }).limit(10);
   res.status(200).json({
     status: "ok",
     message: "Get Trendding Movie successfully",
     data,
   });
 });
-
 
 export {
   createMovie,

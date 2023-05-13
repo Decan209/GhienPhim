@@ -7,6 +7,8 @@ import { BeatLoader } from "react-spinners";
 
 const ProductPage = ({ getApi,category }) => {
   const [nextPage, setNextPage] = useState(1);
+  const [filter, setFilter] = useState("");
+  const [selectedOption, setSelectedOption] = useState("");
 
   useEffect(() => {
     if (nextPage !== null) {
@@ -14,9 +16,19 @@ const ProductPage = ({ getApi,category }) => {
     }
   }, [nextPage]);
 
+  const handleFilter = (query)=>{
+    setSelectedOption(query)
+    if(query==="Xem nhiều"){
+      setFilter("view=1")
+    }
+    if(query==="Mới nhất"){
+      setFilter("filterNew=1")
+    }
+  }
+
   const { isLoading, error, data, refetch } = useQuery(
-    ["actionMovie", nextPage],
-    () => getApi(nextPage)
+    ["actionMovie", {nextPage,filter}],
+    () => getApi({nextPage,filter})
   );
 
   if (isLoading) {
@@ -37,7 +49,7 @@ const ProductPage = ({ getApi,category }) => {
       </div>
       <div className="w-3/4 mx-auto mt-4 max-lg:w-11/12">
         <div className="py-4">
-          <Filter />
+          <Filter handleFilter={handleFilter} selectedOption={selectedOption}/>
         </div>
         <ProductList data={data} />
       </div>
