@@ -11,16 +11,16 @@ export const SECET_KEY = process.env.SECET_KEY;
 
 export const DOMAIN = process.env.DOMAIN;
 const app = express();
-dbConnect();
+
 // app.use(cors({
 //     credentials:true,
 //     origin:['http://localhost:3000','https://ghienphim.onrender.com']
 // }));
-app.use(cors({
-    origin: '*'
-}));
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+
+dbConnect();
 
 route(app);
 
