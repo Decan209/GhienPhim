@@ -14,7 +14,7 @@ const app = express();
 dbConnect();
 app.use(cors({
     credentials:true,
-    origin:['http://localhost:3000']
+    origin:['http://localhost:3000','https://ghienphim.onrender.com']
 }));
 app.use(express.json());
 app.use(cookieParser());
