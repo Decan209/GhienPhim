@@ -106,7 +106,7 @@ const getActionMovieLimit = asyncHandler(async (req, res) => {
 
 const getActionMovie = asyncHandler(async (req, res) => {
   let page = req.query.page;
-  const filter = Object.keys(req.filter).length===0?{}:req.filter;
+  const filter = req.filter;
   const PAGE_SIZE = 8;
 
   if (page) {
@@ -131,7 +131,7 @@ const getActionMovie = asyncHandler(async (req, res) => {
 
 const getFilmViet = asyncHandler(async (req, res) => {
   let page = req.query.page;
-  const filter = Object.keys(req.filter).length===0?{}:req.filter;
+  const filter = req.filter;
 
   const PAGE_SIZE = 8;
 
@@ -156,7 +156,7 @@ const getFilmViet = asyncHandler(async (req, res) => {
 });
 const getCartonMovie = asyncHandler(async (req, res) => {
   let page = req.query.page;
-  const filter = Object.keys(req.filter).length===0?{}:req.filter;
+  const filter = req.filter;
   const PAGE_SIZE = 8;
 
   if (page) {
@@ -180,7 +180,7 @@ const getCartonMovie = asyncHandler(async (req, res) => {
 });
 const getComedyMovie = asyncHandler(async (req, res) => {
   let page = req.query.page;
-  const filter = Object.keys(req.filter).length===0?{}:req.filter;
+  const filter = req.filter;
 
   const PAGE_SIZE = 8;
 
@@ -206,7 +206,7 @@ const getComedyMovie = asyncHandler(async (req, res) => {
 
 const getSingleMovie = asyncHandler(async (req, res) => {
   let page = req.query.page;
-  const filter = Object.keys(req.filter).length===0?{}:req.filter;
+  const filter = req.filter;
   const PAGE_SIZE = 8;
   if (page) {
     page = parseInt(page);

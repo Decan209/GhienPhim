@@ -7,12 +7,18 @@ const filterProducts = asyncHandler((req, res, next) => {
   if(view){
     const filter = {view: -view}
     req.filter = filter;
+    next();
+    return;
   }
   if(filterNew){
     const filter = {_id: -filterNew}
     req.filter = filter;
+    next();
+    return;
   }
-  next();
+  req.filter={}
+  next()
+
 });
 
 export default filterProducts;

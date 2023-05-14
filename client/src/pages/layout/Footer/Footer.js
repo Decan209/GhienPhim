@@ -4,9 +4,7 @@ export default function Footer() {
   return (
     <>
       <div>
-        <Image
-          width={100}
-          height={100}
+        <img
           src="https://ghienphim3.net/client_assets/images/donate_bg.jpg"
           alt=""
           className="my-10"
