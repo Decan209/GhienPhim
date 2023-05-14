@@ -2,7 +2,7 @@ import MainLayout from "@/pages/layout/MainLayout";
 import { getSearch } from "@/services/search.service";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useQuery } from "react-query";
 import { BeatLoader } from "react-spinners";

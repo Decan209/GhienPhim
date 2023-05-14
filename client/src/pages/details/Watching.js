@@ -33,7 +33,7 @@ const Watching = () => {
         </div>
         <div>
           Bộ phim tiếp tục câu chuyện về cậu thiếu niên Billy Batson, khi đọc
-          thuộc lòng từ ma thuật "SHAZAM!" được biến thành Siêu anh hùng thay
+          thuộc lòng từ ma thuật SHAZAM! được biến thành Siêu anh hùng thay
           thế bản ngã trưởng thành của anh ấy, Shazam.
         </div>
         <div className="font-medium text-xl pty-4 mt-12">

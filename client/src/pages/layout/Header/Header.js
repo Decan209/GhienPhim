@@ -17,24 +17,22 @@ export default function Header() {
     email: session?.user?.email,
     googleId: session?.user?.id,
     picture: session?.user?.image,
+  };
+  const { isLoading, error } = useQuery(["addSigninGoogle", userGo], () =>
+    addSigninGoogle(userGo),{enabled:!!session?.user?.id}
+  );
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <BeatLoader color="hsla(33, 100%, 50%, 1)" margin={3} size={20} />
+      </div>
+    );
   }
 
+  if (error) {
+    return console.log(error);
+  }
 
-    if(session?.user?.id){
-      const { isLoading, error } = useQuery(["addSigninGoogle",userGo],()=>addSigninGoogle(userGo));
-      if (isLoading) {
-        return (
-          <div className="flex justify-center items-center h-screen">
-            <BeatLoader color="hsla(33, 100%, 50%, 1)" margin={3} size={20} />
-          </div>
-        );
-      }
-    
-      if (error) {
-        return console.log(error);
-      }
-    }
-  
   return (
     <>
       <div className="flex justify-between px-5 max-sm: pt-4 ">
@@ -46,7 +44,7 @@ export default function Header() {
           />
         </Link>
         <SearchBox />
-        <div className={`${session?.user?"hover-signOut":""} relative`}>
+        <div className={`${session?.user ? "hover-signOut" : ""} relative`}>
           <button
             onClick={() => signIn()}
             className={`${
@@ -56,11 +54,7 @@ export default function Header() {
             {session?.user ? (
               <div>
                 {avatar ? (
-                  <img
-                    src={avatar}
-                    alt=""
-                    className="p-2 rounded-full "
-                  />
+                  <img src={avatar} alt="" className="p-2 rounded-full " />
                 ) : (
                   <img
                     src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
@@ -73,7 +67,10 @@ export default function Header() {
               <div>Truy cập tài khoản</div>
             )}
           </button>
-          <button onClick={() => signOut({ callbackUrl: "/auth/Login" })} className="bg-gray-700 p-2 rounded-lg text-sm font-medium text-orange-500 absolute right-1 top-16 hidden signOut">
+          <button
+            onClick={() => signOut({ callbackUrl: "/auth/Login" })}
+            className="bg-gray-700 p-2 rounded-lg text-sm font-medium text-orange-500 absolute right-1 top-16 hidden signOut"
+          >
             Đăng xuất
           </button>
         </div>

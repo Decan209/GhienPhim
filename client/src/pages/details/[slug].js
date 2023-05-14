@@ -1,5 +1,5 @@
 import MainLayout from "@/pages/layout/MainLayout";
-import React from "react";
+import React, { useMemo } from "react";
 import { AiFillEye, AiFillHeart } from "react-icons/ai";
 import YouTube from "react-youtube";
 import Link from "next/link";
@@ -21,10 +21,16 @@ const opts = {
 
 const Details = () => {
   const router = useRouter();
-  const id = router.query.slug;
+  const id = router.query.slug ;
   const { data: session } = useSession();
 
-  if (id === "undefined") {
+  const { isLoading, error, data } = useQuery(["detailMovie", id?id:undefined], () =>
+  getOneMovie(id?id:undefined),{enabled:!!id}
+);
+
+
+  console.log(id)
+  if (id ==="undefined" || !id ) {
     return (
       <div className=" flex items-center justify-center h-screen">
         <div className="text-center">
@@ -35,10 +41,7 @@ const Details = () => {
     );
   }
 
-  const { isLoading, error, data } = useQuery(["detailMovie", id], () =>
-    getOneMovie(id)
-  );
-
+ 
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -67,7 +70,7 @@ const Details = () => {
     <MainLayout>
       <ToastContainer/>
       {data?.map((todo) => (
-        <div className="p-4 w-3/4 mx-auto max-sm:w-full" key={todo.id}>
+        <div className="p-4 w-3/4 mx-auto max-sm:w-full" key={todo._id}>
           <div className="flex max-sm:block">
             <div className="w-2/4 p-2 max-sm:w-full">
               <img
@@ -125,7 +128,7 @@ const Details = () => {
             </Link>
             <div onClick={()=>handleAddFeatue(todo._id)} className="px-4 py-1 ml-10 cursor-pointer">
               <Link href={`/auth/Login`} className={`${session?.user?"pointer-events-none":""}`}>
-                <AiFillHeart className="text-3xl text-gray-700"/>
+                <AiFillHeart className="text-3xl text-orange-500"/>
               </Link>
             </div>
           </div>

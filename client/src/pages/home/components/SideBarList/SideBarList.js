@@ -15,6 +15,7 @@ const SideBarList = ({ data }) => {
               <div className="text-start font-medium text-gray-300 font-serif text-xs">
                 {data.englishName}
               </div>
+              <div className={`font-mono text-sm ${data.view?"":"hidden"}`}>Lượt xem: {data.view}</div>
             </div>
           </Link>
         ))}

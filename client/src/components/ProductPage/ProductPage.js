@@ -48,7 +48,7 @@ const ProductPage = ({ getApi,category }) => {
         {category}
       </div>
       <div className="w-3/4 mx-auto mt-4 max-lg:w-11/12">
-        <div className="py-4">
+        <div className="py-4 max-md:ml-4">
           <Filter handleFilter={handleFilter} selectedOption={selectedOption}/>
         </div>
         <ProductList data={data} />

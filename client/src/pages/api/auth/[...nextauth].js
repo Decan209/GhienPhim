@@ -3,7 +3,7 @@ import axios from "axios";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import { useRouter } from "next/router";
+import FacebookProvider from "next-auth/providers/facebook";
 
 export default NextAuth({
   providers: [
@@ -52,6 +52,10 @@ export default NextAuth({
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET
     }),
   ],
   callbacks: {

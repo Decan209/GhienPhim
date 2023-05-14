@@ -107,6 +107,7 @@ const Login = () => {
               </div>
               <div className="flex justify-center py-3">
                 <img
+                  onClick={()=>signIn("facebook",{callbackUrl:"/"})}
                   src="https://www.facebook.com/images/fb_icon_325x325.png"
                   alt=""
                   className="w-10 cursor-pointer mr-2"

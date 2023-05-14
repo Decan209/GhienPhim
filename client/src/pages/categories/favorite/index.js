@@ -11,7 +11,7 @@ import { BeatLoader } from "react-spinners";
 import { useQuery } from "react-query";
 import { ToastContainer, toast } from "react-toastify";
 
-export default function index() {
+export default function Favorite() {
   const { data: session } = useSession();
   const email = session?.user?.email;
   // const [clicked, setClicked] = useState(false);
@@ -76,6 +76,7 @@ export default function index() {
                 <div className="text-center font-medium text-gray-300 font-serif">
                   {data.englishName}
                 </div>
+                <div className={`font-mono text-sm`}>Lượt xem: {data.view}</div>
               </div>
             </Link>
             <button

@@ -9,7 +9,6 @@ import { useQueries } from "react-query";
 import {
   hotMoviesService,
   newSingleMoiveService,
-  newSeriesMoiveService,
   trenddingMovie,
 } from "@/services/Homepage.service";
 import { BeatLoader } from "react-spinners";
