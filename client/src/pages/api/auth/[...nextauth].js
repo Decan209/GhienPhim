@@ -58,6 +58,8 @@ export default NextAuth({
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
     }),
   ],
+  baseUrl: 'https://ghien-phim.vercel.app',
+  
   callbacks: {
     async jwt({ token, user }) {
       return { ...token, ...user };
