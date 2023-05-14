@@ -40,9 +40,7 @@ export default function Header() {
     <>
       <div className="flex justify-between px-5 max-sm: pt-4 ">
         <Link href={"/"}>
-          <Image
-            width={100}
-            height={100}
+          <img
             src="https://ghienphim4.net/client_assets/images/logov1.png"
             alt=""
             className="max-w-xs max-sm:w-2/3"
