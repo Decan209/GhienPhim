@@ -18,5 +18,6 @@ youtubeMovieRouter.get('/getCartonMovie',filterProducts,youtubeMovieController.g
 youtubeMovieRouter.get('/getComedyMovie',filterProducts,youtubeMovieController.getComedyMovie);
 youtubeMovieRouter.get('/getSingleMovie',filterProducts,youtubeMovieController.getSingleMovie);
 youtubeMovieRouter.get('/getTrendingMovie',youtubeMovieController.getTrendingMovie)
+youtubeMovieRouter.get('/getFilmVietLimit',youtubeMovieController.getFilmVietLimit)
 
 export default youtubeMovieRouter;

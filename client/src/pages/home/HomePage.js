@@ -7,12 +7,12 @@ import ProductList from "@/components/ProductList/ProductList";
 import { ComingDb } from "@/data/ComingSoon";
 import { useQueries } from "react-query";
 import {
+  getFilmVietLimit,
   hotMoviesService,
   newSingleMoiveService,
   trenddingMovie,
 } from "@/services/Homepage.service";
 import { BeatLoader } from "react-spinners";
-import { getFilmViet } from "@/services/categories.service";
 import Link from "next/link";
 import { PosterImg } from "@/data/Posters";
 
@@ -21,7 +21,7 @@ export default function HomePage() {
   const queries = [
     { queryKey: "filmHot", queryFn: hotMoviesService },
     { queryKey: "newSingleFilm", queryFn: newSingleMoiveService },
-    { queryKey: "FilmViet", queryFn: getFilmViet },
+    { queryKey: "getFilmVietLimit", queryFn: getFilmVietLimit },
     { queryKey: "TrenddingMovie", queryFn: trenddingMovie },
   ];
   const results = useQueries(queries);

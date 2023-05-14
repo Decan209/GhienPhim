@@ -20,4 +20,8 @@ export const trenddingMovie = async () => {
   return res.data.data;
 };
 
+export const getFilmVietLimit = async () => {
+  const res = await axios.get(`${process.env.HOST}/api/v1/youtubeMovie/getFilmVietLimit`);
+  return res.data.data;
+};
 

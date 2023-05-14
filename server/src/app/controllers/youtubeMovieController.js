@@ -250,4 +250,5 @@ export {
   getComedyMovie,
   getSingleMovie,
   getTrendingMovie,
+  getFilmVietLimit,
 };
