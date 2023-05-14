@@ -16,7 +16,9 @@ dbConnect();
 //     credentials:true,
 //     origin:['http://localhost:3000','https://ghienphim.onrender.com']
 // }));
-app.use('*',cors())
+app.use(cors({
+    origin: '*'
+}));
 app.use(express.json());
 app.use(cookieParser());
 
