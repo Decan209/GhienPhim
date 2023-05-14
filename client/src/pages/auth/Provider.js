@@ -5,7 +5,7 @@ import { SessionProvider } from 'next-auth/react'
 function Provider({children}) {
    
   return (
-    <SessionProvider>{children}</SessionProvider>
+    <SessionProvider basePath='espace-personnel/api/auth'>{children}</SessionProvider>
   )
 }
 
