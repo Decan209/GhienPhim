@@ -1,5 +1,6 @@
 import MainLayout from "@/pages/layout/MainLayout";
 import { getSearch } from "@/services/search.service";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -69,7 +70,7 @@ const SearchTable = () => {
                   className="flex px-2 my-2 bg-black"
                   key={data._id}
                 >
-                  <img src={data.avatar} alt="" className="w-24 h-24" />
+                  <Image width={100} height={100} src={data.avatar} alt="" className="w-24 h-24" />
                   <div className="ml-2 my-auto">
                     <div className="text-xl font-semibold font-mono mt-2 px-2">
                       {data.name}

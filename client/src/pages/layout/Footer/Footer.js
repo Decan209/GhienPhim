@@ -1,9 +1,12 @@
+import Image from "next/image";
 
 export default function Footer() {
   return (
     <>
       <div>
-        <img
+        <Image
+          width={100}
+          height={100}
           src="https://ghienphim3.net/client_assets/images/donate_bg.jpg"
           alt=""
           className="my-10"

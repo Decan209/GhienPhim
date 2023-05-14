@@ -10,6 +10,7 @@ import { BeatLoader } from "react-spinners";
 import { useSession } from "next-auth/react";
 import { addFavorite } from "@/services/favorite.service";
 import { ToastContainer, toast } from "react-toastify";
+import Image from "next/image";
 
 const opts = {
   height: "400",
@@ -21,27 +22,34 @@ const opts = {
 
 const Details = () => {
   const router = useRouter();
-  const id = router.query.slug ;
+  const id = router.query.slug;
   const { data: session } = useSession();
 
-  const { isLoading, error, data } = useQuery(["detailMovie", id?id:undefined], () =>
-  getOneMovie(id?id:undefined),{enabled:!!id}
-);
+  const { isLoading, error, data } = useQuery(
+    ["detailMovie", id ? id : undefined],
+    () => getOneMovie(id ? id : undefined),
+    { enabled: !!id }
+  );
 
-
-  console.log(id)
-  if (id ==="undefined" || !id ) {
+  console.log(id);
+  if (id === "undefined" || !id) {
     return (
       <div className=" flex items-center justify-center h-screen">
         <div className="text-center">
-          <div className="text-2xl font-semibold mb-4">Chúng tôi sẽ cập nhật phim sớm nhất</div>
-          <Link href={"/"} className="bg-orange-500 p-2 font-semibold rounded-lg">Trở lại</Link>
+          <div className="text-2xl font-semibold mb-4">
+            Chúng tôi sẽ cập nhật phim sớm nhất
+          </div>
+          <Link
+            href={"/"}
+            className="bg-orange-500 p-2 font-semibold rounded-lg"
+          >
+            Trở lại
+          </Link>
         </div>
       </div>
     );
   }
 
- 
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -56,29 +64,33 @@ const Details = () => {
 
   const email = session?.user?.email;
 
-  const handleAddFeatue = (idMovie)=>{
-    addFavorite({email,idMovie})
-    .then((res) => {
-      if (res.data.status === "ok") {
-        toast.success("Thêm vào danh sách yêu thích thành công");
-      }
-    })
-    .catch((err) => toast.error(err.response.data.message));
-  }
+  const handleAddFeatue = (idMovie) => {
+    addFavorite({ email, idMovie })
+      .then((res) => {
+        if (res.data.status === "ok") {
+          toast.success("Thêm vào danh sách yêu thích thành công");
+        }
+      })
+      .catch((err) => toast.error(err.response.data.message));
+  };
 
   return (
     <MainLayout>
-      <ToastContainer/>
+      <ToastContainer />
       {data?.map((todo) => (
         <div className="p-4 w-3/4 mx-auto max-sm:w-full" key={todo._id}>
           <div className="flex max-sm:block">
             <div className="w-2/4 p-2 max-sm:w-full">
-              <img
+              <Image
+                width={100}
+                height={100}
                 src={todo.avatar}
                 alt="Picture of the author"
                 className="w-10/12 h-96 max-sm:hidden rounded-lg"
               />
-              <img
+              <Image
+                width={100}
+                height={100}
                 src={`https://img.youtube.com/vi/${todo.videoId}/hqdefault.jpg`}
                 alt="Picture of the author"
                 className="w-full max-sm:h-52 max-sm:inline hidden rounded-lg"
@@ -126,9 +138,15 @@ const Details = () => {
             >
               Xem Phim
             </Link>
-            <div onClick={()=>handleAddFeatue(todo._id)} className="px-4 py-1 ml-10 cursor-pointer">
-              <Link href={`/auth/Login`} className={`${session?.user?"pointer-events-none":""}`}>
-                <AiFillHeart className="text-3xl text-orange-500"/>
+            <div
+              onClick={() => handleAddFeatue(todo._id)}
+              className="px-4 py-1 ml-10 cursor-pointer"
+            >
+              <Link
+                href={`/auth/Login`}
+                className={`${session?.user ? "pointer-events-none" : ""}`}
+              >
+                <AiFillHeart className="text-3xl text-orange-500" />
               </Link>
             </div>
           </div>

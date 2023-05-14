@@ -2,7 +2,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai";
 import { EffectCoverflow, Pagination, Navigation, Autoplay } from "swiper";
-import { PosterImg } from "@/data/Posters";
+import Image from "next/image";
 
 const Poster = ({data}) => {
   return (
@@ -33,9 +33,9 @@ const Poster = ({data}) => {
           disableOnInteraction: false,
         }}
       >
-        {data.map((i) => (
+        {data?.map((i) => (
           <SwiperSlide key={i._id}>
-            <img src={i.poster} alt="slide_image" className="max-w-xl max-h-80" style={{backgroundSize: "cover"}}/>
+            <Image width={100} height={100} src={i.poster} alt="slide_image" className="max-w-xl max-h-80" style={{backgroundSize: "cover"}}/>
           </SwiperSlide>
         ))}
         <div className="slider-controler">

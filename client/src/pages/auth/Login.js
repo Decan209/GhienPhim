@@ -7,6 +7,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
+import Image from "next/image";
 
 const Login = () => {
   const [valueOnChange, setValueOnChange] = useState("");
@@ -34,10 +35,10 @@ const Login = () => {
             redirect: false,
             // callbackUrl: "/",
           });
-          if(result.error){
-            return toast.error(result.error)
+          if (result.error) {
+            return toast.error(result.error);
           }
-          router.push('/')
+          router.push("/");
         }}
       >
         <div className="text-gray-900 h-screen max-sm:bg-white">
@@ -106,14 +107,18 @@ const Login = () => {
                 ---------- Hoặc ----------
               </div>
               <div className="flex justify-center py-3">
-                <img
-                  onClick={()=>signIn("facebook",{callbackUrl:"/"})}
+                <Image
+                  width={100}
+                  height={100}
+                  onClick={() => signIn("facebook", { callbackUrl: "/" })}
                   src="https://www.facebook.com/images/fb_icon_325x325.png"
                   alt=""
                   className="w-10 cursor-pointer mr-2"
                 />
-                <img
-                  onClick={()=>signIn("google",{callbackUrl:"/"})}
+                <Image
+                  width={100}
+                  height={100}
+                  onClick={() => signIn("google", { callbackUrl: "/" })}
                   src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
                   alt=""
                   className="w-10 cursor-pointer ml-2"

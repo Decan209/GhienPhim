@@ -7,6 +7,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { addSigninGoogle } from "@/services/auth.service";
 import { useQuery } from "react-query";
 import { BeatLoader } from "react-spinners";
+import Image from "next/image";
 
 export default function Header() {
   const { data: session } = useSession();
@@ -18,8 +19,10 @@ export default function Header() {
     googleId: session?.user?.id,
     picture: session?.user?.image,
   };
-  const { isLoading, error } = useQuery(["addSigninGoogle", userGo], () =>
-    addSigninGoogle(userGo),{enabled:!!session?.user?.id}
+  const { isLoading, error } = useQuery(
+    ["addSigninGoogle", userGo],
+    () => addSigninGoogle(userGo),
+    { enabled: !!session?.user?.id }
   );
   if (isLoading) {
     return (
@@ -37,8 +40,10 @@ export default function Header() {
     <>
       <div className="flex justify-between px-5 max-sm: pt-4 ">
         <Link href={"/"}>
-          <img
-            src="https://ghienphim3.net/client_assets/images/logov1.png"
+          <Image
+            width={100}
+            height={100}
+            src="https://ghienphim4.net/client_assets/images/logov1.png"
             alt=""
             className="max-w-xs max-sm:w-2/3"
           />
@@ -54,9 +59,11 @@ export default function Header() {
             {session?.user ? (
               <div>
                 {avatar ? (
-                  <img src={avatar} alt="" className="p-2 rounded-full " />
+                  <Image width={100} height={100} src={avatar} alt="" className="p-2 rounded-full " />
                 ) : (
-                  <img
+                  <Image
+                    width={100}
+                    height={100}
                     src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
                     alt=""
                     className="p-2 rounded-full "

@@ -10,6 +10,7 @@ import Link from "next/link";
 import { BeatLoader } from "react-spinners";
 import { useQuery } from "react-query";
 import { ToastContainer, toast } from "react-toastify";
+import Image from "next/image";
 
 export default function Favorite() {
   const { data: session } = useSession();
@@ -68,7 +69,13 @@ export default function Favorite() {
               as={`/details/${data.slug}`}
               className="flex justify-start"
             >
-              <img src={data.avatar} alt="" className="w-24 h-24" />
+              <Image
+                width={100}
+                height={100}
+                src={data.avatar}
+                alt=""
+                className="w-24 h-24"
+              />
               <div className="px-8 my-auto">
                 <div className="text-sm font-semibold font-mono mt-2">
                   {data.name}

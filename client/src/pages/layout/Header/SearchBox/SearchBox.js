@@ -24,21 +24,6 @@ export default function SearchBox() {
       <button type="submit" className=" max-sm:hidden  max-md:hidden max-lg:hidden text-orange-500 bg-black relative right-28 px-4 py-1 rounded-3xl">
         Tìm kiếm
       </button>
-      {/* <div className="absolute bg-black ml-3 mt-1 rounded-lg max-sm:w-full max-sm:left-0 hidden">
-          {FaturedMovies.map((data) => (
-            <div className="flex my-2 px-2 " key={data.id}>
-              <img src={data.img} alt="" className="w-14 h-14" />
-              <div className="ml-2">
-                <div className="text-sm font-semibold font-serif text-center mt-2 px-2">
-                  {data.name}
-                </div>
-                <div className="text-center font-medium text-gray-300 font-serif">
-                  {data.nameEng}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div> */}
     </form>
   );
 }

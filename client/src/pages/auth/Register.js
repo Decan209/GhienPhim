@@ -138,21 +138,6 @@ const Register = () => {
                   Đăng nhập
                 </Link>
               </div>
-              {/* <div className="text-center font-semibold">
-                ---------- Hoặc ----------
-              </div>
-              <div className="flex justify-center py-3">
-                <img
-                  src="https://www.facebook.com/images/fb_icon_325x325.png"
-                  alt=""
-                  className="w-10 cursor-pointer mr-2"
-                />
-                <img
-                  src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
-                  alt=""
-                  className="w-10 cursor-pointer ml-2"
-                />
-              </div> */}
             </div>
           </Form>
         </div>
