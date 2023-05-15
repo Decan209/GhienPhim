@@ -159,7 +159,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
         }
     });
 
-    const resetURL = `${DOMAIN}/reset-password/${passwordResetToken}`;
+    const resetURL = `${DOMAIN}/${passwordResetToken}`;
     console.log(resetURL);
 
     const mailOptions = {
