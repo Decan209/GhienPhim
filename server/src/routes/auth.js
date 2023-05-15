@@ -17,9 +17,9 @@ authRouter.get('/google', passport.authenticate('google', { scope: ['profile', '
 authRouter.get('/google/callback', passport.authenticate('google', { session: false, failureRedirect: '/login' }), authController.loginGoogle);
 
 authRouter.post('/forgotPassword', authController.forgotPassword);
-authRouter.post('/refreshToken', verifyReFreshToken, authController.refreshToken);
+// authRouter.post('/refreshToken', verifyReFreshToken, authController.refreshToken);
 authRouter.post('/addSigninGoogle',authController.addSigninGoogle)
-authRouter.use(verifyToken);
+// authRouter.use(verifyToken);
 authRouter.post('/changePassword', authController.changePassword);
 authRouter.use(checkRole);
 authRouter.get('/users', authController.getAllUser);

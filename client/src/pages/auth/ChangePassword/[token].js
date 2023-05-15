@@ -30,7 +30,6 @@ const ChangePassword = () => {
             errors.confirmPassword =
               "Mật khẩu mới và mật khẩu nhập lại phải khớp nhau";
           }
-          console.log(errors);
           return errors;
         }}
         onSubmit={(info) => {
@@ -83,7 +82,7 @@ const ChangePassword = () => {
               <Field
                 id="confirmPassword"
                 name="confirmPassword"
-                type="confirmPassword"
+                type="password"
                 className=" w-full border-2 pt-4 pl-2 pb-1 inputAcc text-gray-900"
               />
               <ErrorMessage
