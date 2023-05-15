@@ -181,8 +181,8 @@ const forgotPassword = asyncHandler(async (req, res) => {
 })
 
 const changePassword = asyncHandler(async (req, res) => {
-    const { newPassword } = req.body;
-    const { email } = req.decodedToken;
+    const { newPassword, token } = req.body;
+    const { email } = jwt.verify(token, SECET_KEY);
     const passwordResetToken = req.headers['authorization'].split(' ')[1];
     const user = await UserModel.findOne({ email, passwordResetToken });
     if (!user) {

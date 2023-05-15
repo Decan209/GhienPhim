@@ -9,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 const ChangePassword = () => {
   const router = useRouter();
+  const token = router.query
   const [valueOnChange, setValueOnChange] = useState("");
   return (
     <>
@@ -32,7 +33,8 @@ const ChangePassword = () => {
           console.log(errors);
           return errors;
         }}
-        onSubmit={(user) => {
+        onSubmit={(info) => {
+          const user = {...info,token}
           console.log(user);
           changePassword(user)
             .then((res) => {
