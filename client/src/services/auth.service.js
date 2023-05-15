@@ -14,3 +14,12 @@ export const addSigninGoogle = async(user)=>{
     const res = await axios.post(`${process.env.HOST}/api/v1/auth/addSigninGoogle`,user);
     return res;
 }
+export const forgotPassword = async(user)=>{
+    const res = await axios.post(`${process.env.HOST}/api/v1/auth/forgotPassword`,user);
+    return res;
+}
+
+export const changePassword = async(user)=>{
+    const res = await axios.post(`${process.env.HOST}/api/v1/auth/changePassword`,user);
+    return res;
+}

@@ -3,6 +3,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
 import { AiOutlineClose } from "react-icons/ai";
+import { forgotPassword } from "@/services/auth.service";
+import { ToastContainer, toast } from "react-toastify";
 
 const ForgetPassword = () => {
   const [valueOnChange, setValueOnChange] = useState("");
@@ -20,11 +22,12 @@ const ForgetPassword = () => {
         validate={(Change) => {
           setValueOnChange(Change);
         }}
-        onSubmit={(dataAcc) => {
-          console.log(dataAcc);
+        onSubmit={(user) => {
+          forgotPassword(user).then(res=>toast.success(res.data.message)).catch(err=>toast.error(err.response.data.message))
         }}
       >
         <div className="text-gray-900 h-screen max-sm:bg-white">
+          <ToastContainer/>
           <Link href={"/"} className="flex justify-end">
             <div className="text-2xl font-bold w-6 h-6 bg-white relative top-6 right-6">
               <AiOutlineClose/>

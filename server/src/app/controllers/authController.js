@@ -145,7 +145,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
     const user = await UserModel.findOne({ email });
     if (!user) {
         res.statusCode = 404;
-        throw new Error('User not found!');
+        throw new Error('Email không tồn tại');
     };
     const passwordResetToken = jwt.sign({ email }, SECET_KEY, { expiresIn: '30m' });
     user.passwordResetToken = passwordResetToken;
@@ -154,8 +154,8 @@ const forgotPassword = asyncHandler(async (req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'tutuananh975@gmail.com',
-            pass: 'kjxhcmutxszaeblb'
+            user: 'deveptest109@gmail.com',
+            pass: 'nsqpjlpgikvumyfa'
         }
     });
 
@@ -163,9 +163,9 @@ const forgotPassword = asyncHandler(async (req, res) => {
     console.log(resetURL);
 
     const mailOptions = {
-        from: 'tutuananh975@gmail.com',
+        from: 'deveptest109@gmail.com',
         to: email,
-        subject: 'Forgot Password',
+        subject: 'Forget Password',
         text: 'Vui lòng click vào đường link dưới đây để thay đổi mật khẩu',
         html: `
             <a href=${resetURL}>${resetURL}</a>
@@ -175,7 +175,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
     const info = await transporter.sendMail(mailOptions);
     res.json({
         status: "ok",
-        message: "send password reset token to email successfully!",
+        message: "Chúng tôi đã gửi mã thay đổi mật khẩu tới Email của bạn",
         data: info
     })
 })
@@ -192,7 +192,7 @@ const changePassword = asyncHandler(async (req, res) => {
     const comparePassword = await bcrypt.compare(newPassword, user.password);
     if (comparePassword) {
         res.statusCode = 400;
-        throw new Error('The new password cannot be the same as the old password');
+        throw new Error('Mật khẩu mới không được trùng với mật khẩu cũ');
     }
     const newHashPassword = bcrypt.hashSync(newPassword, salt);
     user.password = newHashPassword;
