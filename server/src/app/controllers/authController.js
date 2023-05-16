@@ -207,31 +207,31 @@ const changePassword = asyncHandler(async (req, res) => {
     })
 })
 
-const refreshToken = asyncHandler(async (req, res) => {
-    const { email } = req.decodedToken;
-    const refreshToken = req.cookies.refreshToken;
-    const user = await UserModel.findOne({ email, refreshToken });
-    if (!user) {
-        res.statusCode = 404;
-        throw new Error('User not found');
-    }
-    const newToken = jwt.sign({ email, role: user.role }, SECET_KEY, { expiresIn: '1d' });
-    const newRefreshToken = jwt.sign({ email }, SECET_KEY, { expiresIn: '7d' });
-    user.refreshToken = newRefreshToken;
-    await user.save();
-    res.clearCookie('refreshToken');
-    res.cookie('refreshToken', newRefreshToken, {
-        httpOnly: true,
-        maxAge: 24 * 7 * 60 * 1000
-    })
-    res.status(200).json({
-        status: 'ok',
-        message: 'refresh token successfully!',
-        data: {
-            token: newToken
-        }
-    })
-})
+// const refreshToken = asyncHandler(async (req, res) => {
+//     const { email } = req.decodedToken;
+//     const refreshToken = req.cookies.refreshToken;
+//     const user = await UserModel.findOne({ email, refreshToken });
+//     if (!user) {
+//         res.statusCode = 404;
+//         throw new Error('User not found');
+//     }
+//     const newToken = jwt.sign({ email, role: user.role }, SECET_KEY, { expiresIn: '1d' });
+//     const newRefreshToken = jwt.sign({ email }, SECET_KEY, { expiresIn: '7d' });
+//     user.refreshToken = newRefreshToken;
+//     await user.save();
+//     res.clearCookie('refreshToken');
+//     res.cookie('refreshToken', newRefreshToken, {
+//         httpOnly: true,
+//         maxAge: 24 * 7 * 60 * 1000
+//     })
+//     res.status(200).json({
+//         status: 'ok',
+//         message: 'refresh token successfully!',
+//         data: {
+//             token: newToken
+//         }
+//     })
+// })
 
 const addSigninGoogle = asyncHandler(async(req,res)=>{
     const { name, email, googleId, picture } = req.body;
@@ -244,7 +244,8 @@ const addSigninGoogle = asyncHandler(async(req,res)=>{
     const hashPassword = bcrypt.hashSync(email, salt);
     const newUser = new UserModel({
         ...req.body,
-        password: hashPassword
+        password: hashPassword,
+        mobile: "none",
     });
     await newUser.save();
     res.status(201).json({
@@ -262,7 +263,7 @@ export {
     register,
     forgotPassword,
     changePassword,
-    refreshToken,
+    // refreshToken,
     loginGoogle,
     addSigninGoogle,
 }
