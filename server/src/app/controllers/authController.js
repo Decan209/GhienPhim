@@ -245,7 +245,7 @@ const addSigninGoogle = asyncHandler(async(req,res)=>{
     const newUser = new UserModel({
         ...req.body,
         password: hashPassword,
-        mobile: "none",
+        mobile: "000",
     });
     await newUser.save();
     res.status(201).json({
