@@ -80,7 +80,7 @@ export default function Favorite() {
                 <div className="text-sm font-semibold font-mono mt-2">
                   {data.name}
                 </div>
-                <div className="text-center font-medium text-gray-300 font-serif">
+                <div className="font-medium text-gray-300 font-serif">
                   {data.englishName}
                 </div>
                 <div className={`font-mono text-sm`}>Lượt xem: {data.view}</div>
